@@ -1,0 +1,17 @@
+{
+  "name": "reg-system-root",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "frontend-install": "cd reg-frontend && npm install",
+    "backend-install": "cd reg-backend && npm install",
+    "install-all": "npm run frontend-install && npm run backend-install",
+    "frontend": "cd reg-frontend && npm run dev",
+    "backend": "cd reg-backend && npm run dev",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
