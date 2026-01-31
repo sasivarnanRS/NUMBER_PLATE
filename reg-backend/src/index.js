@@ -13,7 +13,31 @@ const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI;
 const JWT_SECRET = process.env.JWT_SECRET || 'cyberpunk_secret_key_2077';
 
-app.use(cors());
+// CORS Configuration - Update with your Vercel URL after deployment
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://reg-number-plate.vercel.app',  // Update with your actual Vercel URL
+    // Add your custom domain here if you have one
+];
+
+app.use(cors({
+    origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            console.warn(`[CORS] Blocked request from origin: ${origin}`);
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(bodyParser.json());
 
 // Auth Middleware
