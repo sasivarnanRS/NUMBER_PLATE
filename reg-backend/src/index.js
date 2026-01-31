@@ -13,11 +13,12 @@ const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI;
 const JWT_SECRET = process.env.JWT_SECRET || 'cyberpunk_secret_key_2077';
 
-// CORS Configuration - Updated with actual Vercel URL
+// CORS Configuration - Updated with actual Vercel URLs
 const allowedOrigins = [
     'http://localhost:5173',
     'http://localhost:3000',
-    'https://number-plate-eta.vercel.app',  // ✅ Your actual Vercel URL
+    'https://number-plate-eta.vercel.app',   // Previous Vercel URL
+    'https://number-plate-1ljf.vercel.app',  // ✅ Current Vercel URL
     // Add your custom domain here if you have one
 ];
 
